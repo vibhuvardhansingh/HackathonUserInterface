@@ -43,8 +43,12 @@
             android:name=".MapsActivityUser"
             android:label="@string/title_activity_maps_user" />
         <activity
-            android:name=".Main2Activity"
-            android:label="@string/title_activity_main2"></activity>
+            android:name=".BottomNavigationActivity"
+            android:label="@string/title_activity_main2" />
+        <activity
+            android:name=".NavigationActivity"
+            android:label="@string/title_activity_navigation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

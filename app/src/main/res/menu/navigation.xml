@@ -2,25 +2,27 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_threshold"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_threshold" />
 
     <item
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_bin_near_me"
         android:icon="@drawable/ic_dashboard_black_24dp"
         android:title="@string/title_bin_near_me" />
 
     <item
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_coupons"
         android:icon="@drawable/ic_notifications_black_24dp"
         android:title="@string/title_coupons" />
     <item
+        android:id="@+id/leaderboard"
         android:title="@string/title_leaderboard"
         android:icon="@drawable/ic_notifications_black_24dp"
 
         />
     <item
+        android:id="@+id/profile"
         android:title="@string/title_profile"
         android:icon="@drawable/ic_dashboard_black_24dp"
 
