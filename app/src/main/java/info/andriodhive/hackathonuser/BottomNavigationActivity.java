@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-public class Main2Activity extends AppCompatActivity {
+public class BottomNavigationActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
 
@@ -17,15 +17,15 @@ public class Main2Activity extends AppCompatActivity {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
-                case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
-                    return true;
-                case R.id.navigation_dashboard:
+              //  case R.id.navigation_home:
+                   // mTextMessage.setText(R.string.title_home);
+                  /*  return true;
+             //   case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
                     return true;
-                case R.id.navigation_notifications:
+               // case R.id.navigation_notifications:
                     mTextMessage.setText(R.string.title_notifications);
-                    return true;
+                    return true;*/
             }
             return false;
         }
