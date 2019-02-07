@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/collapse" />
 
     <android.support.design.widget.TextInputEditText
-        android:id="@+id/leaderboard"
+        android:id="@+id/navigation_leaderboard"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="4dp"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/leaderboard">
+        app:layout_constraintTop_toBottomOf="@+id/navigation_leaderboard">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/rank"
@@ -82,7 +82,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/leaderboard"
+        app:layout_constraintTop_toTopOf="@+id/navigation_leaderboard"
         app:srcCompat="@android:drawable/ic_popup_sync" />
 
     <android.support.v7.widget.RecyclerView
