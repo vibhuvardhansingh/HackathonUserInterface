@@ -21,7 +21,8 @@ public class BottomNavigationActivity extends AppCompatActivity {
     testFragment fragment = new testFragment();
     Leaderboard_Fragment fragment1 = new Leaderboard_Fragment();
     Profile_Fragment profile_fragment = new Profile_Fragment();
-
+    TransactionFragment transactionFragment = new TransactionFragment();
+    Threshold_Fragment threshold_fragment = new Threshold_Fragment();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
@@ -36,15 +37,15 @@ public class BottomNavigationActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.frameLayout, fragment1).addToBackStack(null).commit();
             return true;
         }
-        else if (item.getItemId() == R.id.navigation_threshold) {
+        else if (item.getItemId() == R.id.navigation_coupons) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, fragment1).addToBackStack(null).commit();
+            fragmentTransaction.replace(R.id.frameLayout, transactionFragment).addToBackStack(null).commit();
             return true;
-        }else if (item.getItemId() == R.id.navigation_bin_near_me) {
+        }else if (item.getItemId() == R.id.navigation_leaderboard) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, fragment1).addToBackStack(null).commit();
+            fragmentTransaction.replace(R.id.frameLayout, threshold_fragment).addToBackStack(null).commit();
             return true;
         }
         else

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
-public class Threshold_Fragment extends Fragment {
+public class Threshold_Fragment extends android.support.v4.app.Fragment {
 
     public Threshold_Fragment() {
         // Required empty public constructor

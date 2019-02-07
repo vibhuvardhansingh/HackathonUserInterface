@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 public class TransactionFragment extends Fragment {
 
-    public testFragment() {
+    public TransactionFragment() {
         // Required empty public constructor
     }
 
