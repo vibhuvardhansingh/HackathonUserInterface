@@ -1,13 +1,12 @@
 package info.andriodhive.hackathonuser;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 
-public class Profile_Fragment extends Fragment {
+public class Profile_Fragment extends android.support.v4.app.Fragment {
 
     public Profile_Fragment() {
         // Required empty public constructor

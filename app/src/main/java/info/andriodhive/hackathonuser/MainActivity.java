@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     Log.d(TAG, "signInWithEmail:success");
                     FirebaseUser user = mAuth.getCurrentUser();
 
-                    Intent intent = new Intent(getApplicationContext(),NavigationActivity.class);
+                    Intent intent = new Intent(getApplicationContext(),BottomNavigationActivity.class);
                     startActivity(intent);
                 } else {
                     // If sign in fails, display a message to the user.
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            Intent intent = new Intent(getApplicationContext(),NavigationActivity.class);
+                            Intent intent = new Intent(getApplicationContext(),BottomNavigationActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
