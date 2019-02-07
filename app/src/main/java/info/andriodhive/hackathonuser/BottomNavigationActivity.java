@@ -22,6 +22,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
     Leaderboard_Fragment fragment1 = new Leaderboard_Fragment();
     Profile_Fragment profile_fragment = new Profile_Fragment();
 
+
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
         if (item.getItemId() == R.id.navigation_threshold) {
@@ -35,7 +36,7 @@ public class BottomNavigationActivity extends AppCompatActivity {
             fragmentTransaction.replace(R.id.frameLayout, fragment1).addToBackStack(null).commit();
             return true;
         }
-        else if (item.getItemId() == R.id.navigation_bin_near_me) {
+        else if (item.getItemId() == R.id.navigation_threshold) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, fragment1).addToBackStack(null).commit();
