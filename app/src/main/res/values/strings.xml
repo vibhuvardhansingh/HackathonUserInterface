@@ -4,8 +4,8 @@
     <string name="title_activity_maps_user">Map</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_threshold">Threshold</string>
-    <string name="title_bin_near_me">Dashboard</string>
-    <string name="title_leaderboard">Notifications</string>
+    <string name="title_bin_near_me">Map</string>
+    <string name="title_leaderboard">Leaderboard</string>
     <string name="title_coupons">Coupons</string>
     <string name="title_profile">Profile</string>
 
