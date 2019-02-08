@@ -28,12 +28,12 @@ public class BottomNavigationActivity extends AppCompatActivity {
         if (item.getItemId() == R.id.navigation_threshold) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, profile_fragment).commit();
+            fragmentTransaction.replace(R.id.frameLayout, threshold_fragment).commit();
             return true;
         } else if (item.getItemId() == R.id.navigation_bin_near_me) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, fragment1).commit();
+            fragmentTransaction.replace(R.id.frameLayout, threshold_fragment).commit();
             return true;
         }
         else if (item.getItemId() == R.id.navigation_coupons) {
@@ -44,7 +44,13 @@ public class BottomNavigationActivity extends AppCompatActivity {
         }else if (item.getItemId() == R.id.navigation_leaderboard) {
             FragmentManager fragmentManager = getSupportFragmentManager();
             android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.frameLayout, threshold_fragment).commit();
+            fragmentTransaction.replace(R.id.frameLayout, fragment1).commit();
+            return true;
+        }
+        else if (item.getItemId() == R.id.navigation_profile) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.frameLayout, profile_fragment).commit();
             return true;
         }
         else

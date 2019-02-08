@@ -6,29 +6,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:clickable="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/collapse" />
 
-        <android.support.design.widget.TextInputEditText
+    <TextView
             android:id="@+id/navigation_leaderboard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:text="LEADERBOARD"
             android:textSize="40sp"
             app:layout_constraintEnd_toStartOf="@+id/refresh"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/floatingActionButton" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="4dp" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -38,7 +28,7 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/navigation_leaderboard">
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
                 android:id="@+id/rank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -50,7 +40,7 @@
                 android:textSize="20sp"
                 app:layout_constraintLeft_toLeftOf="parent" />
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
                 android:id="@+id/username1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +52,7 @@
                 android:textSize="20sp"
                 app:layout_constraintLeft_toRightOf="@id/rank" />
 
-            <android.support.design.widget.TextInputEditText
+            <TextView
                 android:id="@+id/points"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,41 +75,321 @@
             app:layout_constraintTop_toTopOf="@+id/navigation_leaderboard"
             app:srcCompat="@android:drawable/ic_popup_sync" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/team1"
-        android:layout_width="113dp"
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/imageButton3"
+        app:layout_constraintBottom_toTopOf="@id/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.58"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.097"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintVertical_bias="0.0">
 
-        <ImageButton
-            android:id="@+id/locator"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_dialog_map" />
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/search"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout"
+            app:layout_constraintVertical_bias="0.0">
 
-        <ImageButton
-            android:id="@+id/imageButton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            app:layout_constraintBottom_toTopOf="@+id/locator"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_compass"
-            tools:srcCompat="@android:drawable/ic_menu_search" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
+
+                <TextView
+                    android:id="@+id/rank01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/username01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="22vasuairen"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/rank01" />
+
+                <TextView
+                    android:id="@+id/points01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="10000"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/username01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <TextView
+                    android:id="@+id/rank02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/username02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="neerajmoitra08"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/rank01" />
+
+                <TextView
+                    android:id="@+id/points02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="9990"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/username01" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+
+                <TextView
+                    android:id="@+id/rank03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/username03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="shristisingh20"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/rank03" />
+
+                <TextView
+                    android:id="@+id/points03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="9980"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/username03" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    android:id="@+id/rank04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/username04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="22vasuairen"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/rank04" />
+
+                <TextView
+                    android:id="@+id/points04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="10000"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/username04" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+                <TextView
+                    android:id="@+id/rank05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="2"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/username05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="neerajmoitra08"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/rank05" />
+
+                <TextView
+                    android:id="@+id/points05"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="9990"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/username05" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
+
+                <TextView
+                    android:id="@+id/rank06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="3"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toLeftOf="parent" />
+
+                <TextView
+                    android:id="@+id/username06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="shristisingh20"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/rank06" />
+
+                <TextView
+                    android:id="@+id/points06"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_weight="1"
+                    android:text="9980"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    app:layout_constraintLeft_toRightOf="@id/username06" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <ImageButton
+        android:id="@+id/locator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_map" />
+
+    <ImageButton
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/locator"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_menu_compass"
+        tools:srcCompat="@android:drawable/ic_menu_search" />
     </android.support.constraint.ConstraintLayout>
 
