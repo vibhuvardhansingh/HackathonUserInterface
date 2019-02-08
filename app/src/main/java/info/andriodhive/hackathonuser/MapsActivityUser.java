@@ -154,6 +154,7 @@ public class MapsActivityUser extends  FragmentActivity implements OnMapReadyCal
 
 
 
+
         fillRamanujan = getIntent().getIntExtra("data1",0);
 
         DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -383,6 +384,8 @@ public class MapsActivityUser extends  FragmentActivity implements OnMapReadyCal
             return !TextUtils.isEmpty(locationProviders);
         }
     }
+
+
 
 
 }
