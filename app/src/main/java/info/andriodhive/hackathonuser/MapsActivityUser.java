@@ -46,6 +46,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.maps.android.clustering.ClusterItem;
+import com.google.maps.android.clustering.ClusterManager;
 
 import java.text.NumberFormat;
 
@@ -62,7 +64,6 @@ public class MapsActivityUser extends  FragmentActivity implements OnMapReadyCal
     private String Empty = "Dustbin Empty" , Full = "Dustbin Full", HalfFull = "Dustbin Half full";
     private int fillRamanujan;
     private TextView mUserName, mSwaccthaPoints;
-    private int swacchtaPoints = 0;
     Double d, d1,d2;
 
     private Button Throw;
@@ -74,6 +75,38 @@ public class MapsActivityUser extends  FragmentActivity implements OnMapReadyCal
     private GoogleApiClient mGoogleApiClient;
     private FusedLocationProviderClient mLocationProviderClient;
 
+    private ClusterManager<MyItem> mClusterManager;
+
+    private void setUpClusterer() {
+        // Position the map.
+        // Initialize the manager with the context and the map.
+        // (Activity extends context, so we can pass 'this' in the constructor.)
+        mClusterManager = new ClusterManager<MyItem>(this, getMap());
+
+        // Point the map's listeners at the listeners implemented by the cluster
+        // manager.
+        getMap().setOnCameraIdleListener(mClusterManager);
+        getMap().setOnMarkerClickListener(mClusterManager);
+
+        // Add cluster items (markers) to the cluster manager.
+        addItems();
+    }
+
+    private void addItems() {
+
+        // Set some lat/lng coordinates to start with.
+        double lat = 25.2602856;
+        double lng = -0.1270060;
+
+        // Add ten cluster items in close proximity, for purposes of this example.
+        for (int i = 0; i < 10; i++) {
+            double offset = i / 60d;
+            lat = lat + offset;
+            lng = lng + offset;
+            MyItem offsetItem = new MyItem(lat, lng);
+            mClusterManager.addItem(offsetItem);
+        }
+    }
     private LocationCallback mLocationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -171,6 +204,7 @@ public class MapsActivityUser extends  FragmentActivity implements OnMapReadyCal
             }
         });
 
+        setUpClusterer();
 
 
         fillRamanujan = getIntent().getIntExtra("data1",0);
@@ -405,5 +439,8 @@ public class MapsActivityUser extends  FragmentActivity implements OnMapReadyCal
 
 
 
+    protected GoogleMap getMap() {
+        return mMap;
+    }
 
 }
