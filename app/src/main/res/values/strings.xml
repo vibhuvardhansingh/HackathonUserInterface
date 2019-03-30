@@ -111,4 +111,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_navigation">NavigationActivity</string>
+    
+    <!--<string name="default_web_client_id">624249958193-krlnk8ppeh8k9buv2v37mugon7hi6nc2.apps.googleusercontent.com</string>-->
 </resources>
