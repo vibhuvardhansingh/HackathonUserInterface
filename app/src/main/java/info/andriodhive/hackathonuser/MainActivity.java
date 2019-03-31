@@ -14,6 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
+
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -23,6 +31,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -39,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     int RC_SIGN_IN = 100;
     @VisibleForTesting
     public ProgressDialog mProgressDialog;
+    private CallbackManager mCallbackManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +66,9 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        mSignUp.setOnClickListener(v -> SignUp(mEmail.getText().toString(),mPassword.getText().toString()));
+        mSignUp.setOnClickListener(v -> SignUp(mEmail.getText().toString(), mPassword.getText().toString()));
         mSignIn.setOnClickListener(v -> {
-            signIn(mEmail.getText().toString(),mPassword.getText().toString());
+            signIn(mEmail.getText().toString(), mPassword.getText().toString());
             myref.child("UserName").setValue(mUserName.getText().toString());
         });
         mSignInGoogle.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +82,41 @@ public class MainActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        }
 
+        // [START initialize_fblogin]
+        // Initialize Facebook Login button
+        mCallbackManager = CallbackManager.Factory.create();
+        LoginButton loginButton = findViewById(R.id.buttonFacebookLogin);
+        loginButton.setReadPermissions("email", "public_profile");
+        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
 
+            @Override
+            public void onCancel() {
+                Log.d(TAG, "facebook:onCancel");
+                // [START_EXCLUDE]
+                updateUI(null);
+                // [END_EXCLUDE]
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d(TAG, "facebook:onError", error);
+                // [START_EXCLUDE]
+                updateUI(null);
+                // [END_EXCLUDE]
+            }
+        });
+        // [END initialize_fblogin]
+    }
 
     private void signInGoogle() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent,RC_SIGN_IN);
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     @Override
@@ -98,7 +136,39 @@ public class MainActivity extends AppCompatActivity {
                 // ...
             }
         }
+        else
+            mCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        Log.d(TAG, "handleFacebookAccessToken:" + token);
+        // [START_EXCLUDE silent]
+        showProgressDialog();
+        // [END_EXCLUDE]
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithCredential:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+                            updateUI(null);
+                        }
+
+                        // [START_EXCLUDE]
+                        hideProgressDialog();
+                        // [END_EXCLUDE]
+                    }
+                });
+    }
+
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
@@ -109,12 +179,13 @@ public class MainActivity extends AppCompatActivity {
                         // Sign in success, update UI with the signed-in user's information
                         Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        startActivity(new Intent(MainActivity.this,BottomNavigationActivity.class));
+                        updateUI(user);
+//                        startActivity(new Intent(MainActivity.this,BottomNavigationActivity.class));
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                     }
-                    
+
                 });
     }/*
     @Override
@@ -136,32 +207,32 @@ public class MainActivity extends AppCompatActivity {
         // [START create_user_with_email]
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success");
-                    FirebaseUser user = mAuth.getCurrentUser();
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = mAuth.getCurrentUser();
 
-                    Intent intent = new Intent(getApplicationContext(),BottomNavigationActivity.class);
-                    startActivity(intent);
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(MainActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                }
+                            Intent intent = new Intent(getApplicationContext(), BottomNavigationActivity.class);
+                            startActivity(intent);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(MainActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
 
-                // [START_EXCLUDE]
-                if (!task.isSuccessful()) {
-                    Toast.makeText(MainActivity.this, "auth_failed", Toast.LENGTH_SHORT);
-                }
-                hideProgressDialog();
-                // [END_EXCLUDE]
+                        // [START_EXCLUDE]
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "auth_failed", Toast.LENGTH_SHORT);
+                        }
+                        hideProgressDialog();
+                        // [END_EXCLUDE]
 
 
-            }
-        });
+                    }
+                });
 
         // [END create_user_with_email]
     }
@@ -183,9 +254,9 @@ public class MainActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-
-                            Intent intent = new Intent(getApplicationContext(),BottomNavigationActivity.class);
-                            startActivity(intent);
+                            updateUI(user);
+//                            Intent intent = new Intent(getApplicationContext(),BottomNavigationActivity.class);
+//                            startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -219,13 +290,13 @@ public class MainActivity extends AppCompatActivity {
 
         return valid;
     }
+
     public void showProgressDialog() {
         if (mProgressDialog == null) {
             mProgressDialog = new ProgressDialog(this);
             mProgressDialog.setMessage(getString(R.string.loading));
             mProgressDialog.setIndeterminate(true);
         }
-
         mProgressDialog.show();
     }
 
@@ -241,4 +312,21 @@ public class MainActivity extends AppCompatActivity {
         hideProgressDialog();
     }
 
+    private void signOut() {
+        // Firebase sign out
+        mAuth.signOut();
+
+        // Google sign out
+        mGoogleSignInClient.signOut().addOnCompleteListener(this,
+                task -> updateUI(null));
+    }
+
+    private void updateUI(FirebaseUser user) {
+        if (user != null) {
+            startActivity(new Intent(MainActivity.this, BottomNavigationActivity.class));
+        }
+        if (user == null) {
+            onBackPressed();
+        }
+    }
 }
