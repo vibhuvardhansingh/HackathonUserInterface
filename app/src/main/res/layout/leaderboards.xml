@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bp">
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
@@ -24,8 +25,12 @@
         android:layout_marginLeft="4dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="20dp"
+        android:fontFamily="monospace"
         android:text="LEADERBOARD"
+
+        android:textColor="#ffffff"
         android:textSize="40sp"
+        android:typeface="monospace"
         app:layout_constraintEnd_toStartOf="@+id/refresh"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/floatingActionButton" />
@@ -47,6 +52,7 @@
             android:layout_weight="1"
             android:text="Rank"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="20sp"
             app:layout_constraintLeft_toLeftOf="parent" />
 
@@ -59,6 +65,7 @@
             android:layout_weight="1"
             android:text="Username"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/rank" />
 
@@ -71,6 +78,7 @@
             android:layout_weight="1"
             android:text="Points"
             android:textAlignment="center"
+            android:textColor="#ffffff"
             android:textSize="20sp"
             app:layout_constraintLeft_toRightOf="@id/username1" />
     </LinearLayout>

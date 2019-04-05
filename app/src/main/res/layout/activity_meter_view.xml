@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_bp"
 
     tools:context=".MeterView">
     <com.github.anastr.speedviewlib.TubeSpeedometer
@@ -18,6 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="ENTER"
+        android:background="@drawable/buttonborder"
+        android:textColor="#ffffff"
         android:id="@+id/enter"
         app:layout_constraintTop_toBottomOf="@+id/speed_view"
         app:layout_constraintStart_toStartOf="parent"
